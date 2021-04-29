@@ -28,13 +28,16 @@
           ></el-input>
         </el-form-item>
         <!-- 按钮 -->
-        <el-button type="primary" class="login-btn">登陆</el-button>
+        <el-button type="primary" class="login-btn" @click="login"
+          >登陆</el-button
+        >
       </el-form>
     </div>
   </div>
 </template>
 
 <script>
+import { userLogin } from "@/apis/user.js";
 export default {
   data() {
     return {
@@ -64,6 +67,34 @@ export default {
         ],
       },
     };
+  },
+  methods: {
+    login() {
+      // 给表单添加一个validate方法，他有一个函数参数 可以验证表单
+      this.$refs.loginForm.validate(async (valid) => {
+        // console.log(valid);
+        // 判断valid 为true就表示验证通过 否则就是不通过
+        if (valid) {
+          let res = await userLogin(this.loginForm);
+          // console.log(res);
+          // 判断是否登陆成功
+          if (res.data.message == "登录成功") {
+            this.$message.success("登录成功");
+            // 登录成功存储token
+            localStorage.setItem("heima_back61_token", res.data.data.token);
+            // 跳转到首页
+            this.$router.push({ path: "/index" });
+          } else {
+            this.$message({
+              message: "登录失败，账号或者密码错误",
+              type: "warning",
+            });
+          }
+        } else {
+          this.$message.error("账号或者密码输入不合法");
+        }
+      });
+    },
   },
 };
 </script>
