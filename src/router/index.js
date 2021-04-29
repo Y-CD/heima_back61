@@ -16,7 +16,27 @@ const router = new VueRouter({
         {
             name: 'index',
             path: '/index',
-            component: () => import('@/views/index.vue')
+            component: () => import('@/views/index.vue'),
+            // 登录到首页重定向到 显示欢迎的页面
+            redirect: { name: 'hello' },
+            // 使用嵌套路由
+            children: [
+                {
+                    name: 'hello',
+                    path: 'hello',
+                    component: () => import('@/views/hello.vue')
+                },
+                {
+                    name: 'postList',
+                    path: 'postList',
+                    component: () => import('@/views/postList.vue')
+                },
+                {
+                    name: 'postPublish',
+                    path: 'postPublish',
+                    component: () => import('@/views/postPublish.vue')
+                }
+            ]
         }
     ]
 })

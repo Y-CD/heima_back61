@@ -13,8 +13,8 @@
           :unique-opened="true"
           :router="true"
         >
-          <!-- 图片 -->
-          <div class="logo"></div>
+          <!-- 图片 点击可以回到首页 -->
+          <div class="logo" @click="$router.push({ name: 'index' })"></div>
           <!-- 侧边栏 -->
           <el-submenu index="1">
             <template slot="title">
@@ -36,11 +36,11 @@
               <i class="el-icon-location"></i>
               <span>文章管理</span>
             </template>
-            <el-menu-item index="2-1">
+            <el-menu-item index="postList">
               <i class="el-icon-user-solid"></i>
               <span>文章列表</span>
             </el-menu-item>
-            <el-menu-item index="2-2">
+            <el-menu-item index="postPublish">
               <i class="el-icon-circle-plus"></i>
               <span>文章添加</span>
             </el-menu-item>
@@ -73,7 +73,10 @@
           </div>
         </el-header>
         <!-- 主体内容 -->
-        <el-main>Main</el-main>
+        <el-main>
+          <!-- 添加router-view 实现嵌套路由 -->
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -107,6 +110,7 @@ export default {};
     background: url(../assets/logo.png);
     background-size: cover;
     background-color: #fff;
+    cursor: pointer;
   }
   .toggle-btn {
     padding: 0 15px;
