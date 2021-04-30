@@ -7,3 +7,12 @@ export const getPostList = (params) => {
         params
     })
 }
+
+// 发布文章
+export const publishPost = (data) => {
+    return axios({
+        method: 'post',
+        url: '/post',
+        data
+    })
+}

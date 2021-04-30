@@ -5,7 +5,7 @@
         <!-- unique-opened 设置只展开一个菜单项 -->
         <!-- router 是否使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转 -->
         <el-menu
-          default-active="2"
+          :default-active="$route.name"
           class="el-menu-vertical-demo"
           background-color="#545c64"
           text-color="#fff"

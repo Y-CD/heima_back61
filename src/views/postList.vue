@@ -44,7 +44,7 @@
         :page-sizes="[4, 6, 8, 10]"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="25"
+        :total="100"
         style="margin-top: 20px"
       >
       </el-pagination>
